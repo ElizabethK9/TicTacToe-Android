@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Buttons for the TicTacToe grid -->
+    <Button
+        android:id="@+id/button_00"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:text=""
+        android:contentDescription="Top left cell"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_01"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="28dp"
+        android:text=""
+        android:contentDescription="Top middle cell"
+        app:layout_constraintStart_toEndOf="@+id/button_00"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button_02"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:text=""
+        android:contentDescription="Top right cell"
+        app:layout_constraintStart_toEndOf="@+id/button_01"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_10"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:text=""
+        android:contentDescription="Middle left cell"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_00" />
+
+    <Button
+        android:id="@+id/button_11"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="28dp"
+        android:text=""
+        android:contentDescription="Middle cell"
+        app:layout_constraintStart_toEndOf="@+id/button_10"
+        app:layout_constraintTop_toBottomOf="@+id/button_01" />
+
+    <Button
+        android:id="@+id/button_12"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:text=""
+        android:contentDescription="Middle right cell"
+        app:layout_constraintStart_toEndOf="@+id/button_11"
+        app:layout_constraintTop_toBottomOf="@+id/button_02"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/button_20"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:text=""
+        android:contentDescription="Bottom left cell"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_10" />
+
+    <Button
+        android:id="@+id/button_21"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:layout_marginStart="28dp"
+        android:text=""
+        android:contentDescription="Bottom middle cell"
+        app:layout_constraintStart_toEndOf="@+id/button_20"
+        app:layout_constraintTop_toBottomOf="@+id/button_11" />
+
+    <Button
+        android:id="@+id/button_22"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="118dp"
+        android:layout_height="119dp"
+        android:text=""
+        android:contentDescription="Bottom right cell"
+        app:layout_constraintStart_toEndOf="@+id/button_21"
+        app:layout_constraintTop_toBottomOf="@+id/button_12"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- New Game Button -->
+    <Button
+        android:id="@+id/newGameButton"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="61dp"
+        android:layout_marginBottom="40dp"
+        android:text="@string/new_game_button"
+        android:contentDescription="Start a new game"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.415"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Display TextView -->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="203dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="140dp"
+        android:text="@string/player_turn"
+        android:contentDescription="Displays current player's turn"
+        app:layout_constraintBottom_toTopOf="@+id/newGameButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.433"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

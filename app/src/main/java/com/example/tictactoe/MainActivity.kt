@@ -55,15 +55,62 @@ class MainActivity : AppCompatActivity() {
 
     // Handle button clicks for TicTacToe grid
     private fun onButtonClick(button: Button) {
-        if (button.text.isEmpty()) { // If the button is blank
-            if (isPlayerXTurn) {
-                button.text = "X"
-                turnTextView.text = "Player O's Turn"
+        // Ensure the button is blank and the game is not over
+        if (button.text.isEmpty() && isGameActive()) {
+            button.text = if (isPlayerXTurn) "X" else "O"
+
+            if (checkWin()) {
+                turnTextView.text = if (isPlayerXTurn) "Player X Wins!" else "Player O Wins!"
+                disableButtons() // Disable all buttons
+            } else if (checkTie()) {
+                turnTextView.text = "It's a Tie!"
+                disableButtons() // Disable all buttons
             } else {
-                button.text = "O"
-                turnTextView.text = "Player X's Turn"
+                isPlayerXTurn = !isPlayerXTurn // Switch turn
+                turnTextView.text = if (isPlayerXTurn) "Player X's Turn" else "Player O's Turn"
             }
-            isPlayerXTurn = !isPlayerXTurn // Switch turn
+        }
+    }
+
+    // Helper to check if the game is active
+    private fun isGameActive(): Boolean {
+        return buttons.any { row -> row.any { it.isEnabled } } // Any button is still enabled
+    }
+
+    // Check if the current player has won
+    private fun checkWin(): Boolean {
+        val symbol = if (isPlayerXTurn) "X" else "O"
+
+        // Check rows, columns, and diagonals
+        for (i in 0..2) {
+            // Check rows
+            if (buttons[i][0].text == symbol && buttons[i][1].text == symbol && buttons[i][2].text == symbol) return true
+            // Check columns
+            if (buttons[0][i].text == symbol && buttons[1][i].text == symbol && buttons[2][i].text == symbol) return true
+        }
+        // Check diagonals
+        if (buttons[0][0].text == symbol && buttons[1][1].text == symbol && buttons[2][2].text == symbol) return true
+        if (buttons[0][2].text == symbol && buttons[1][1].text == symbol && buttons[2][0].text == symbol) return true
+
+        return false
+    }
+
+    // Check if the game is a tie
+    private fun checkTie(): Boolean {
+        for (i in buttons.indices) {
+            for (j in buttons[i].indices) {
+                if (buttons[i][j].text.isEmpty()) return false // Empty button found, not a tie
+            }
+        }
+        return true // No empty buttons, it's a tie
+    }
+
+    // Disable all buttons after a win or tie
+    private fun disableButtons() {
+        for (i in buttons.indices) {
+            for (j in buttons[i].indices) {
+                buttons[i][j].isEnabled = false
+            }
         }
     }
 
@@ -72,11 +119,13 @@ class MainActivity : AppCompatActivity() {
         isPlayerXTurn = true
         turnTextView.text = "Player X's Turn"
 
-        // Clear all buttons
+        // Clear all buttons and enable them
         for (i in buttons.indices) {
             for (j in buttons[i].indices) {
                 buttons[i][j].text = ""
+                buttons[i][j].isEnabled = true
             }
         }
     }
 }
+
